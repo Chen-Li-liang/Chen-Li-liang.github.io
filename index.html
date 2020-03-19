@@ -357,7 +357,7 @@
 <li><p><strong>启动所有的实例,并检查是否启动成功</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/src/redis-server /usr/local/redis-cluster/8001/redis.conf</span><br><span class="line">/usr/local/redis/src/redis-server /usr/local/redis-cluster/8002/redis.conf</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">ps -ef | grep redis</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:%5CUsers%5Cchenlil%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200318181146117.png" alt="image-20200318181146117"></p>
+<p><img src="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200319104044.png" alt="img"></p>
 </li>
 <li><p><strong>使用 redis-cli 创建 redis 集群</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/src/redis-cli -a xxx --cluster create --cluster-replicas 1 192.168.1.5:8001 192.168.1.5:8002 192.168.1.5:8003 192.168.1.5:8004 192.168.1.5:8005 192.168.1.5:8005</span><br></pre></td></tr></table></figure>
