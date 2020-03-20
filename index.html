@@ -678,12 +678,15 @@ redis 3.2之后采用该模式
       
         
           
-          dddd
-aaaa
-dddd
+          crontab 是用来定期执行程序的命令
+当系统安装完成之后，默认就会启动次任务调度命令
+crond 服务会每分钟去检查是否有工作需要执行，如果有则会立即执行
 
+语法1crontab [ -u user ] file
 
-          
+或
+1crontab [ -u user ] &#123; -l | -r | 
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/18/Centos-crontab-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/#more" rel="contents">
