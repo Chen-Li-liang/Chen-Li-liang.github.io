@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Chenlil Blog">
 <meta property="og:description" content="环境准备 CentOS Linux release 7.3.1611 (Core)  Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production  思路 三台安装 Oracle 的 CentOS 7.3 服务器，每台数据库服务器，存储着不同的数据库 利用 Oracle 的 Expdp 将数据导出来 利用">
 <meta property="article:published_time" content="2020-03-19T09:13:54.000Z">
-<meta property="article:modified_time" content="2020-03-19T10:13:55.532Z">
+<meta property="article:modified_time" content="2020-03-20T07:54:11.399Z">
 <meta property="article:author" content="chenlil">
 <meta name="twitter:card" content="summary">
 
@@ -314,6 +314,56 @@
 <li>每周一凌晨三点执行全量备份任务</li>
 <li>每月一号凌晨三点执行清理上上个月备份文件</li>
 </ul>
+<h4 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h4><ul>
+<li><p>配置 Oracle 导入导出目录权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">su - oracle  #切换Oracle账户</span><br><span class="line">mkdir ~/backup_dir #创建导出文件存放目录</span><br><span class="line">sqlplus / as sysdba #以DBA的身份登录Oracle</span><br><span class="line">create directory dir_dp as '/home/oracle/backup_dir';  #创建导入导出目录</span><br><span class="line">create or replace directory dir_dp as '/home/oracle/backup_dir';  #修改导入导出目录 需要的话执行</span><br><span class="line">grant read,write on directory dir_dp to chenlil; #授权 chenlil 用户对该目录</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始导出数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expdp chenlil/123456 schemas=chenlil DIRECTORY=dir_dp CONTENT=all compression=ALL DUMPFILE=chenlil.dmp logfile=chenlil.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>chenlil/123456</code> 导出所需的用户名和密码 与上面授权的一致</li>
+<li><code>schemas=chenlil</code> 导出库的名称</li>
+<li><code>DIRECTORY=dir_dp</code> 导出的目录名  与上面配置的一致</li>
+<li><code>DUMPFILE=chenlil.dmp</code> 导出文件的名称</li>
+<li><code>logfile=chenlil.log</code> 导出日志的名称</li>
+</ul>
+</li>
+<li><p>生成导出脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">source ~/.bash_profile  #刷新配置文件</span><br><span class="line">scpip=(192.168.1.15 192.168.1.16) #备份的服务器IP</span><br><span class="line">tmp=/home/oracle/backup_dir/ #备份文件存放目录</span><br><span class="line">dir=/home/oracle/global_back_dmp/ #全局同步文件存放目录</span><br><span class="line">dmpfile=`date +_%Y%m%d`.dmp #根据当前年月日生成的备份文件名</span><br><span class="line">dumplog=`date +_%Y%m%d`.log #根据当前年月日生成的备份日志文件名</span><br><span class="line"></span><br><span class="line">username=chenlil  #导出所需的用户名</span><br><span class="line">password=123456   #导出所需的密码</span><br><span class="line">schemas=(chenlil chenlil1 chenlil2 chenlil3)  #需要导出的库</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">清除之前的备份</span></span><br><span class="line">rm -f $&#123;tmp&#125;*</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">备份过程</span></span><br><span class="line">for s in $&#123;schemas[@]&#125;</span><br><span class="line">do</span><br><span class="line">   expdp $&#123;username&#125;/$&#123;password&#125; schemas=$s DIRECTORY=dir_dp CONTENT=all compression=ALL DUMPFILE=$s$&#123;dmpfile&#125; logfile=$s$&#123;dumplog&#125;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">同步本地</span></span><br><span class="line">cp $&#123;tmp&#125;* $&#123;dir&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">远程传输</span></span><br><span class="line">for ip in $&#123;scpip[@]&#125;</span><br><span class="line">do</span><br><span class="line">    scp $&#123;tmp&#125;*$&#123;dmpfile&#125; oracle@$ip:$&#123;dir&#125;</span><br><span class="line">    scp $&#123;tmp&#125;*$&#123;dumplog&#125; oracle@$ip:$&#123;dir&#125;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加定时任务—-每周一早上三点执行一下脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab -e  #编辑定时任务</span><br><span class="line"><span class="meta">#</span><span class="bash"> 每周一早上三点 执行全量备份任务 </span></span><br><span class="line">SHELL=/bin/bash</span><br><span class="line">0 3 * * 1 cd /home/oracle/cron/ &amp;&amp; ./oracle_backup.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成删除上上个月的备份文件脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">dir=/home/oracle/global_back_dmp/</span><br><span class="line">nowdate=`date +%Y%m01`  #本月第一天</span><br><span class="line">startdate=`date -d"$nowdate last month last month" +%Y%m%d` #上上个月第一天</span><br><span class="line">enddate=`date -d"$nowdate last month last day" +%Y%m%d` #上上个月最后一天</span><br><span class="line"><span class="meta">#</span><span class="bash">遍历上上个月的每一天</span></span><br><span class="line">while (( $startdate &lt;= $enddate ))</span><br><span class="line">do</span><br><span class="line"><span class="meta">   #</span><span class="bash"><span class="built_in">echo</span> <span class="variable">$startdate</span></span></span><br><span class="line">   find $dir -type f -name "*$&#123;startdate&#125;*" -ls &gt;&gt; ~/del_file_list.txt</span><br><span class="line">   find $dir -type f -name "*$&#123;startdate&#125;*" -exec rm -f &#123;&#125; \;</span><br><span class="line">   startdate=`date -d "+1 day $startdate" +%Y%m%d`</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加定时任务—-每月一号执行一下清理脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 每个月一号早上三点 执行清除上个月备份文件</span></span><br><span class="line">0 3 1 * * cd /home/oracle/cron/ &amp;&amp; ./del_backup.sh</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h4><ul>
+<li><p>准备工作</p>
+<ul>
+<li>同导出一样配置 Oracle 导入导出目录权限</li>
+<li>将备份文件拷被至导入导出文件夹</li>
+</ul>
+</li>
+<li><p>执行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impdp chenlil/123456 schemas=chenlili dumpfile=chenlil_20200319.dmp logfile=impdp_chenlil_20200319.log directory=dir_dp</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>chenlil/123456</code>   导入数据账号和密码</li>
+<li><code>schemas=chenlili</code>  导入的库名称</li>
+<li><code>dumpfile=chenlil_20200319.dmp</code>  导入的备份文件名称</li>
+<li><code>logfile=impdp_chenlil_20200319.log</code>  导入过程的日志文件名</li>
+<li><code>directory=dir_dp</code> 导入文件的文件名</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -460,7 +510,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#备份策略"><span class="nav-number">3.</span> <span class="nav-text">备份策略</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#备份策略"><span class="nav-number">3.</span> <span class="nav-text">备份策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开始部署"><span class="nav-number">4.</span> <span class="nav-text">开始部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据恢复"><span class="nav-number">5.</span> <span class="nav-text">数据恢复</span></a></li></ol></div>
             
 
           </div>
