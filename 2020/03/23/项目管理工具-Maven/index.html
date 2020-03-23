@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="高可用集群模式 redis 集群时一个由多个主从节点群组组成的分布式服务器群，它具有复制、高可用和分片特性 该集群模式没有中心节点，可水平扩展，并且性能和高可用性都优于哨兵模式 redis 3.2之后采用该模式  安装官方下载地址：点击 安装编译环境 1yum install gcc -y  下载安装包，并复制到&#x2F;usr&#x2F;local&#x2F;目录下 12345wget -p &#x2F;usr&#x2F;local&#x2F; htt">
+<meta name="description" content="1. Maven 概述 Maven 不仅内置了以来管理，更有一个拥有庞大 Java 开源软件包的中央仓库   Maven 生命周期  Maven 主要有三种内置的生命周期，每个生命周期，都有自己的一个或一系列的阶段   clean 用于清理 Maven 产生的文件和文件夹，包含一个 clean 阶段 site 用于处理项目文档的创建，包含一个 site 阶段，该阶段会生成项目的文档 default">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis 5.0.8 集群搭建">
-<meta property="og:url" content="http://chenlil.xyz/2020/03/18/Redis-5-0-8-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:title" content="项目管理工具-Maven">
+<meta property="og:url" content="http://chenlil.xyz/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Maven/index.html">
 <meta property="og:site_name" content="Chenlil Blog">
-<meta property="og:description" content="高可用集群模式 redis 集群时一个由多个主从节点群组组成的分布式服务器群，它具有复制、高可用和分片特性 该集群模式没有中心节点，可水平扩展，并且性能和高可用性都优于哨兵模式 redis 3.2之后采用该模式  安装官方下载地址：点击 安装编译环境 1yum install gcc -y  下载安装包，并复制到&#x2F;usr&#x2F;local&#x2F;目录下 12345wget -p &#x2F;usr&#x2F;local&#x2F; htt">
-<meta property="og:image" content="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200319104044.png">
-<meta property="article:published_time" content="2020-03-18T09:06:28.000Z">
-<meta property="article:modified_time" content="2020-03-20T09:41:26.741Z">
+<meta property="og:description" content="1. Maven 概述 Maven 不仅内置了以来管理，更有一个拥有庞大 Java 开源软件包的中央仓库   Maven 生命周期  Maven 主要有三种内置的生命周期，每个生命周期，都有自己的一个或一系列的阶段   clean 用于清理 Maven 产生的文件和文件夹，包含一个 clean 阶段 site 用于处理项目文档的创建，包含一个 site 阶段，该阶段会生成项目的文档 default">
+<meta property="og:image" content="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/200323160010.png">
+<meta property="article:published_time" content="2020-03-23T06:53:57.000Z">
+<meta property="article:modified_time" content="2020-03-23T09:16:17.700Z">
 <meta property="article:author" content="chenlil">
 <meta property="article:tag" content="chenlil">
 <meta property="article:tag" content="陈李亮，李亮">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200319104044.png">
+<meta name="twitter:image" content="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/200323160010.png">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://chenlil.xyz/2020/03/18/Redis-5-0-8-集群搭建/"/>
+  <link rel="canonical" href="http://chenlil.xyz/2020/03/23/项目管理工具-Maven/"/>
 
 
 
 
 
-  <title>Redis 5.0.8 集群搭建 | Chenlil Blog</title>
+  <title>项目管理工具-Maven | Chenlil Blog</title>
   
 
 
@@ -245,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenlil.xyz/2020/03/18/Redis-5-0-8-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+    <link itemprop="mainEntityOfPage" href="http://chenlil.xyz/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Maven/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chenlil">
@@ -262,7 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis 5.0.8 集群搭建</h1>
+          <h1 class="post-title" itemprop="name headline">项目管理工具-Maven</h1>
         
 
         <div class="post-meta">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T17:06:28+08:00">
-                2020-03-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-23T14:53:57+08:00">
+                2020-03-23
               </time>
             
 
@@ -285,28 +285,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/server/" itemprop="url" rel="index">
-                    <span itemprop="name">server</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -314,7 +292,7 @@
 
           
           
-             <span id="/2020/03/18/Redis-5-0-8-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="Redis 5.0.8 集群搭建">
+             <span id="/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Maven/" class="leancloud_visitors" data-flag-title="项目管理工具-Maven">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -345,89 +323,67 @@
       
 
       
-        <h4 id="高可用集群模式"><a href="#高可用集群模式" class="headerlink" title="高可用集群模式"></a>高可用集群模式</h4><ul>
-<li>redis 集群时一个由多个主从节点群组组成的分布式服务器群，它具有复制、高可用和分片特性</li>
-<li>该集群模式没有中心节点，可水平扩展，并且性能和高可用性都优于哨兵模式</li>
-<li>redis 3.2之后采用该模式</li>
+        <h4 id="1-Maven-概述"><a href="#1-Maven-概述" class="headerlink" title="1. Maven 概述"></a>1. Maven 概述</h4><blockquote>
+<p>Maven 不仅内置了以来管理，更有一个拥有庞大 Java 开源软件包的中央仓库</p>
+</blockquote>
+<ul>
+<li><p>Maven 生命周期</p>
+<blockquote>
+<p>Maven 主要有三种内置的生命周期，每个生命周期，都有自己的一个或一系列的阶段</p>
+</blockquote>
+<ul>
+<li><code>clean</code> 用于清理 Maven 产生的文件和文件夹，包含一个 clean 阶段</li>
+<li><code>site</code> 用于处理项目文档的创建，包含一个 site 阶段，该阶段会生成项目的文档</li>
+<li><code>default</code> 用于处理项目的构建和部署。以下时 default 生命周期所包含的主要阶段<ul>
+<li><code>validate</code> 该阶段用于验证所有项目的信息是否可用和正确</li>
+<li><code>process-resources</code> 该阶段复制项目到发布包的位置</li>
+<li><code>compile</code> 该阶段用于编译源码</li>
+<li><code>test</code> 该阶段结合框架执行特定的单元测试</li>
+<li><code>package</code> 该阶段按照特定发布包的格式来打包编译后的源码</li>
+<li><code>integration-test</code> 该阶段用于处理集成测试环境中的发布包</li>
+<li><code>verify</code> 该阶段运行校验发布包是否可用</li>
+<li><code>install</code> 该阶段安装发布包到本地库</li>
+<li><code>deploy</code> 该阶段安装最终的发布包到配置的库</li>
 </ul>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><h5 id="官方下载地址：点击"><a href="#官方下载地址：点击" class="headerlink" title="官方下载地址：点击"></a>官方下载地址：<a href="https://redis.io/download" target="_blank" rel="noopener">点击</a></h5><ol>
-<li><p><strong>安装编译环境</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc -y</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>下载安装包，并复制到/usr/local/目录下</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -p /usr/local/ http://download.redis.io/releases/redis-5.0.8.tar.gz  #下载</span><br><span class="line">cd /usr/local #切换至下载文件所在目录</span><br><span class="line">tar -zxvf redis-5.0.8.tar.gz #解压</span><br><span class="line">mv redis-5.0.8 redis</span><br><span class="line">cd redis #进入redis目录</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>编译安装</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp; make install #编译并安装</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>单机启动测试</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">src/redis-server redis.conf #启动</span><br><span class="line"><span class="meta">#</span><span class="bash"> 新启动一个窗口</span></span><br><span class="line">src/redis-cli  #连接redis</span><br><span class="line">set name testName </span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ok</span></span><br><span class="line">get name</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> testName</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>结束redis服务</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pkill redis-server</span><br><span class="line"></span><br><span class="line">kill -9 进程号</span><br><span class="line"></span><br><span class="line">src/redis-cli shutdown</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h5 id="集群方式搭建"><a href="#集群方式搭建" class="headerlink" title="集群方式搭建"></a>集群方式搭建</h5><ul>
-<li>redis 集群至少需要三个 master 节点，并且每个 master 节点需要至少一个 slave 节点，所以至少需要六个节点</li>
-<li>以下方式是在一台服务器上搭建集群，也就是<code>伪集群</code>，实际环境大同小异</li>
 </ul>
+<blockquote>
+<p>在实际使用中，开发人员无需明确指定生命周期。相反只需要指定一个阶段，Maven 会根据指定的阶段来推测生命周期。例如。当 Maven 以 package 为运行参数时，default 生命周期都会得到执行。<strong>Maven 会按顺序运行所有阶段</strong></p>
+<p>每个阶段都由插件目标（goal）组成，插件目标是构建项目的特定任务</p>
+<p>一些目标旨在特定阶段才有意义。例如，在 Maven 的 compile 目标中，Maven Compiler 插件在 compile 阶段是有意义的，而 Maven Checkstyle 插件的 checkstyle 目标可以会在任何阶段运行</p>
+</blockquote>
+<p>Maven 的阶段、插件和目标的对应关系</p>
+<p><img src="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/200323160010.png" alt="img"></p>
+</li>
+</ul>
+<h4 id="2-依赖管理"><a href="#2-依赖管理" class="headerlink" title="2. 依赖管理"></a>2. 依赖管理</h4><ul>
+<li><p>在 Java 中，可以用 <code>groupId</code> 、<code>artifactId</code>、<code>version</code> 组成的 <code>Coordination</code>（坐标）唯一表示一个依赖</p>
+</li>
+<li><p>任何基于 Maven 构建的项目本身也必须定义这 3 项，生成的包可以是 jar 包，也可以是 war 包或 ear 包</p>
+</li>
+<li><p>依赖管理中，一个非常重要的概念 <code>scope</code> (范围)。 Maven 有以下 6 种不同的 scope</p>
 <ol>
-<li><p><strong>创建六个节点需要的目录，用于存放数据和配置文件</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /usr/local/redis-cluster/&#123;8001|8002|8003|8004|8005|8006&#125;</span><br></pre></td></tr></table></figure>
+<li><p><code>compile</code> 默认就是 compile，它就表示被依赖项目需要参与当前项目的编译，后续的测试、运行周期也参与其中。打包时通常需要包含进去</p>
 </li>
-<li><p><strong>将 redis 主目录中的配置文件复制到 8001 目录下，并开始集群配置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/redis/redis.conf /usr/local/redis-cluster/8001</span><br><span class="line">cd /usr/local/redis-cluster/8001</span><br><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>daemonize yes</code>  允许后台运行</li>
-<li><code>port 8001</code>  端口号，分别对应所在的目录</li>
-<li><code>dir /usr/local/redis-cluster/8001</code> 指定数据文件的存储位置，这里需要根据配置文件所在文字不同而不同</li>
-<li><code>cluster-enabled yes</code>  开启集群模式</li>
-<li><code>cluster-config-file nodes-8001.conf</code> 集群节点信息，800x部分最好于端口名相同，以便区分</li>
-<li><code>cluster-node-timeout 5000</code>  节点心跳超时时间 以毫秒为单位</li>
-<li><code># bind 127.0.0.1</code> 注释掉IP绑定，这样所有的网卡都可以接收数据</li>
-<li><code>protected-mode no</code>  关闭保护模式</li>
-<li><code>appendonly yes</code></li>
-</ul>
-<p><strong>如果要设置密码需要增加以下配置</strong></p>
-<ul>
-<li><code>requirepass xxx</code> 设置 redis 访问密码</li>
-<li><code>masterauth xxx</code>  设置集群节点间访问密码，建议与上面一致</li>
-</ul>
+<li><p><code>test</code> 该类依赖项目仅参与测试相关的工作，包括测试代码的编译、执行。一般不需要这种类型的依赖</p>
 </li>
-<li><p><strong>将修改好的 redis.conf 文件复制到 8002-8006 目录中，并修改包含8001的位置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/redis-cluster/8001/redis.conf /usr/local/redis-cluster/8002/ #复制配置文件</span><br><span class="line">.......</span><br><span class="line">vim /usr/local/redis-cluster/8002/redis.conf #打开 8002-8006 目录下的配置文件</span><br><span class="line">:%s/8001/8002/g  #使用vim的替换功能将 8001 替换成 8002-8006  成功会显示替换的地方有三处</span><br></pre></td></tr></table></figure>
+<li><p><code>runtime</code> 表示被依赖项目无需参与项目的编译，不过后期的测试和运行周期需要其参与。典型实例为 logback，如果希望使用 <code>Simple Logging Facade for Java (slf4j)</code> 来记录日志，可以使用 logback 绑定</p>
 </li>
-<li><p><strong>启动所有的实例,并检查是否启动成功</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/src/redis-server /usr/local/redis-cluster/8001/redis.conf</span><br><span class="line">/usr/local/redis/src/redis-server /usr/local/redis-cluster/8002/redis.conf</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">ps -ef | grep redis</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200319104044.png" alt="img"></p>
+<li><p><code>provided</code> 该类依赖只参与编译和运行，但并不需要在发布时打包进发布包。典型示例为 servlet-api，该类依赖通常由应用服务来提供</p>
 </li>
-<li><p><strong>使用 redis-cli 创建 redis 集群</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/src/redis-cli -a xxx --cluster create --cluster-replicas 1 192.168.1.5:8001 192.168.1.5:8002 192.168.1.5:8003 192.168.1.5:8004 192.168.1.5:8005 192.168.1.5:8005</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-a</code>  参数是指上面配置的集群密码</li>
-<li><code>--cluster create</code>  表示创建集群</li>
-<li><code>--cluster-replicas</code> 表示每个 master 需要多少个 slave</li>
-<li><code>192.168.1.5</code> 这里的IP地址最好指定对外可访问的地址，以便远程连接可自动切换</li>
-</ul>
+<li><p><code>system</code> 从参与角度来说，与 <code>provided</code> 相同，不过被依赖项不会从 Maven 仓库获取，而是从本地文件系统获取，所以一定要配合 systemPath 属性使用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.arcsoft.face<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>arcsoft-sdk-face<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;basedir&#125;/lib/arcsoft-sdk-face-3.0.0.0.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>验证集群</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/src/redis-cli -c -a xxx -h 192.168.1.5 -p 8001</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-a</code> 表示访问密码</li>
-<li><code>-c</code> 表示访问方式为集群</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cluster info #查看集群信息</span><br><span class="line">cluster nodes #查看节点列表和状态</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>关闭集群，关闭时需要一个一个的关闭</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/src/redis-cli -c -a xxx -h 192.168.1.5 -p 8001 shutdown</span><br></pre></td></tr></table></figure>
-
+<li><p><code>import</code> 仅用于依赖关系管理部分中 pom 类型的依赖。import 表示指定的 pom 应该被替换为该 pom 的 dependencyManagement 部分中的依赖关系。为了集中大型多模块项目的依赖关系</p>
 </li>
 </ol>
+</li>
+</ul>
+<h4 id="3-多模块构建"><a href="#3-多模块构建" class="headerlink" title="3. 多模块构建"></a>3. 多模块构建</h4><blockquote>
+<p>Maven 支持多模块构建。将一个大型软件产品划分为多个模块来进行开发，从而实现软件项目的 “高内聚、低耦合”</p>
+<p>Maven 的多模块构建是通过一个名称为项目继承（project inheritance）的功能来实现的，它允许将一些需要继承的元素，在父模块的 pom 文件中进行指定</p>
+<p>多模块项目包含一个父模块及多个子模块</p>
+</blockquote>
 
       
     </div>
@@ -452,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/18/Centos-crontab-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="next" title="Centos crontab 使用方法">
-                <i class="fa fa-chevron-left"></i> Centos crontab 使用方法
+              <a href="/2020/03/19/Oracle-%E8%87%AA%E5%8A%A8%E5%85%A8%E9%87%8F%E5%A4%87%E4%BB%BD/" rel="next" title="Oracle 自动全量备份">
+                <i class="fa fa-chevron-left"></i> Oracle 自动全量备份
               </a>
             
           </div>
@@ -462,8 +418,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/19/Oracle-%E8%87%AA%E5%8A%A8%E5%85%A8%E9%87%8F%E5%A4%87%E4%BB%BD/" rel="prev" title="Oracle 自动全量备份">
-                Oracle 自动全量备份 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Gradle/" rel="prev" title="项目管理工具-Gradle">
+                项目管理工具-Gradle <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -587,7 +543,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#高可用集群模式"><span class="nav-number">1.</span> <span class="nav-text">高可用集群模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#官方下载地址：点击"><span class="nav-number">2.1.</span> <span class="nav-text">官方下载地址：点击</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#集群方式搭建"><span class="nav-number">2.2.</span> <span class="nav-text">集群方式搭建</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Maven-概述"><span class="nav-number">1.</span> <span class="nav-text">1. Maven 概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-依赖管理"><span class="nav-number">2.</span> <span class="nav-text">2. 依赖管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-多模块构建"><span class="nav-number">3.</span> <span class="nav-text">3. 多模块构建</span></a></li></ol></div>
             
 
           </div>
