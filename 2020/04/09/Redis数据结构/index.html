@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="1. Maven 概述 Maven 不仅内置了以来管理，更有一个拥有庞大 Java 开源软件包的中央仓库   Maven 生命周期  Maven 主要有三种内置的生命周期，每个生命周期，都有自己的一个或一系列的阶段   clean 用于清理 Maven 产生的文件和文件夹，包含一个 clean 阶段 site 用于处理项目文档的创建，包含一个 site 阶段，该阶段会生成项目的文档 default">
+<meta name="description" content="Redis基础数据结构 Redis 有 5 种基础数据结构，分别为：string (字符串)、list (列表)、set (集合)、hash (哈希) 和 zset (有序集合) Redis 所有的数据结构都是以唯一的 key 字符串作为名称，然后通过这个唯一 key 值来获取相应的 value 数据 不同类型的数据结构的差异在于 value 的结构不一样 string (字符串)  字符串 st">
 <meta property="og:type" content="article">
-<meta property="og:title" content="项目管理工具-Maven">
-<meta property="og:url" content="http://chenlil.xyz/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Maven/index.html">
+<meta property="og:title" content="Redis数据结构">
+<meta property="og:url" content="http://chenlil.xyz/2020/04/09/Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Chenlil Blog">
-<meta property="og:description" content="1. Maven 概述 Maven 不仅内置了以来管理，更有一个拥有庞大 Java 开源软件包的中央仓库   Maven 生命周期  Maven 主要有三种内置的生命周期，每个生命周期，都有自己的一个或一系列的阶段   clean 用于清理 Maven 产生的文件和文件夹，包含一个 clean 阶段 site 用于处理项目文档的创建，包含一个 site 阶段，该阶段会生成项目的文档 default">
-<meta property="og:image" content="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/200323160010.png">
-<meta property="article:published_time" content="2020-03-23T06:53:57.000Z">
-<meta property="article:modified_time" content="2020-03-23T09:16:17.700Z">
+<meta property="og:description" content="Redis基础数据结构 Redis 有 5 种基础数据结构，分别为：string (字符串)、list (列表)、set (集合)、hash (哈希) 和 zset (有序集合) Redis 所有的数据结构都是以唯一的 key 字符串作为名称，然后通过这个唯一 key 值来获取相应的 value 数据 不同类型的数据结构的差异在于 value 的结构不一样 string (字符串)  字符串 st">
+<meta property="og:image" content="https://ceshi-1251459004.cos.ap-guangzhou.myqcloud.com/blog/16458d666d851a12.gif">
+<meta property="og:image" content="https://ceshi-1251459004.cos.ap-guangzhou.myqcloud.com/blog/164caaff402d2617.png">
+<meta property="article:published_time" content="2020-04-09T07:44:20.000Z">
+<meta property="article:modified_time" content="2020-04-09T08:51:15.266Z">
 <meta property="article:author" content="chenlil">
 <meta property="article:tag" content="chenlil">
 <meta property="article:tag" content="陈李亮，李亮">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/200323160010.png">
+<meta name="twitter:image" content="https://ceshi-1251459004.cos.ap-guangzhou.myqcloud.com/blog/16458d666d851a12.gif">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://chenlil.xyz/2020/03/23/项目管理工具-Maven/"/>
+  <link rel="canonical" href="http://chenlil.xyz/2020/04/09/Redis数据结构/"/>
 
 
 
 
 
-  <title>项目管理工具-Maven | Chenlil Blog</title>
+  <title>Redis数据结构 | Chenlil Blog</title>
   
 
 
@@ -245,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenlil.xyz/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Maven/">
+    <link itemprop="mainEntityOfPage" href="http://chenlil.xyz/2020/04/09/Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chenlil">
@@ -262,7 +263,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">项目管理工具-Maven</h1>
+          <h1 class="post-title" itemprop="name headline">Redis数据结构</h1>
         
 
         <div class="post-meta">
@@ -274,8 +275,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-23T14:53:57+08:00">
-                2020-03-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-09T15:44:20+08:00">
+                2020-04-09
               </time>
             
 
@@ -292,7 +293,7 @@
 
           
           
-             <span id="/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Maven/" class="leancloud_visitors" data-flag-title="项目管理工具-Maven">
+             <span id="/2020/04/09/Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="leancloud_visitors" data-flag-title="Redis数据结构">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -323,67 +324,40 @@
       
 
       
-        <h4 id="1-Maven-概述"><a href="#1-Maven-概述" class="headerlink" title="1. Maven 概述"></a>1. Maven 概述</h4><blockquote>
-<p>Maven 不仅内置了以来管理，更有一个拥有庞大 Java 开源软件包的中央仓库</p>
-</blockquote>
-<ul>
-<li><p>Maven 生命周期</p>
+        <h3 id="Redis基础数据结构"><a href="#Redis基础数据结构" class="headerlink" title="Redis基础数据结构"></a>Redis基础数据结构</h3><hr>
+<p>Redis 有 5 种基础数据结构，分别为：string (字符串)、list (列表)、set (集合)、hash (哈希) 和 zset (有序集合)</p>
+<p>Redis 所有的数据结构都是以唯一的 key 字符串作为名称，然后通过这个唯一 key 值来获取相应的 value 数据</p>
+<p>不同类型的数据结构的差异在于 value 的结构不一样</p>
+<h4 id="string-字符串"><a href="#string-字符串" class="headerlink" title="string (字符串)"></a>string (字符串)</h4><hr>
+<p><img src="https://ceshi-1251459004.cos.ap-guangzhou.myqcloud.com/blog/16458d666d851a12.gif" alt="img"></p>
+<p>字符串 string 是 Redis 最简单得数据结构</p>
+<p>字符串结构使用非常广泛，一个常见的用途就是缓存用户信息</p>
 <blockquote>
-<p>Maven 主要有三种内置的生命周期，每个生命周期，都有自己的一个或一系列的阶段</p>
+<p>​    将用户信息结构体使用 JSON 序列化成字符串，然后将序列化后的字符串塞进 Redis 来缓存</p>
+<p>​    取用户信息会经过一次反序列化的过程</p>
 </blockquote>
-<ul>
-<li><code>clean</code> 用于清理 Maven 产生的文件和文件夹，包含一个 clean 阶段</li>
-<li><code>site</code> 用于处理项目文档的创建，包含一个 site 阶段，该阶段会生成项目的文档</li>
-<li><code>default</code> 用于处理项目的构建和部署。以下时 default 生命周期所包含的主要阶段<ul>
-<li><code>validate</code> 该阶段用于验证所有项目的信息是否可用和正确</li>
-<li><code>process-resources</code> 该阶段复制项目到发布包的位置</li>
-<li><code>compile</code> 该阶段用于编译源码</li>
-<li><code>test</code> 该阶段结合框架执行特定的单元测试</li>
-<li><code>package</code> 该阶段按照特定发布包的格式来打包编译后的源码</li>
-<li><code>integration-test</code> 该阶段用于处理集成测试环境中的发布包</li>
-<li><code>verify</code> 该阶段运行校验发布包是否可用</li>
-<li><code>install</code> 该阶段安装发布包到本地库</li>
-<li><code>deploy</code> 该阶段安装最终的发布包到配置的库</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>在实际使用中，开发人员无需明确指定生命周期。相反只需要指定一个阶段，Maven 会根据指定的阶段来推测生命周期。例如。当 Maven 以 package 为运行参数时，default 生命周期都会得到执行。<strong>Maven 会按顺序运行所有阶段</strong></p>
-<p>每个阶段都由插件目标（goal）组成，插件目标是构建项目的特定任务</p>
-<p>一些目标旨在特定阶段才有意义。例如，在 Maven 的 compile 目标中，Maven Compiler 插件在 compile 阶段是有意义的，而 Maven Checkstyle 插件的 checkstyle 目标可以会在任何阶段运行</p>
-</blockquote>
-<p>Maven 的阶段、插件和目标的对应关系</p>
-<p><img src="https://blog-1253687854.cos.ap-guangzhou.myqcloud.com/200323160010.png" alt="img"></p>
-</li>
-</ul>
-<h4 id="2-依赖管理"><a href="#2-依赖管理" class="headerlink" title="2. 依赖管理"></a>2. 依赖管理</h4><ul>
-<li><p>在 Java 中，可以用 <code>groupId</code> 、<code>artifactId</code>、<code>version</code> 组成的 <code>Coordination</code>（坐标）唯一表示一个依赖</p>
-</li>
-<li><p>任何基于 Maven 构建的项目本身也必须定义这 3 项，生成的包可以是 jar 包，也可以是 war 包或 ear 包</p>
-</li>
-<li><p>依赖管理中，一个非常重要的概念 <code>scope</code> (范围)。 Maven 有以下 6 种不同的 scope</p>
-<ol>
-<li><p><code>compile</code> 默认就是 compile，它就表示被依赖项目需要参与当前项目的编译，后续的测试、运行周期也参与其中。打包时通常需要包含进去</p>
-</li>
-<li><p><code>test</code> 该类依赖项目仅参与测试相关的工作，包括测试代码的编译、执行。一般不需要这种类型的依赖</p>
-</li>
-<li><p><code>runtime</code> 表示被依赖项目无需参与项目的编译，不过后期的测试和运行周期需要其参与。典型实例为 logback，如果希望使用 <code>Simple Logging Facade for Java (slf4j)</code> 来记录日志，可以使用 logback 绑定</p>
-</li>
-<li><p><code>provided</code> 该类依赖只参与编译和运行，但并不需要在发布时打包进发布包。典型示例为 servlet-api，该类依赖通常由应用服务来提供</p>
-</li>
-<li><p><code>system</code> 从参与角度来说，与 <code>provided</code> 相同，不过被依赖项不会从 Maven 仓库获取，而是从本地文件系统获取，所以一定要配合 systemPath 属性使用</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.arcsoft.face<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>arcsoft-sdk-face<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;basedir&#125;/lib/arcsoft-sdk-face-3.0.0.0.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>import</code> 仅用于依赖关系管理部分中 pom 类型的依赖。import 表示指定的 pom 应该被替换为该 pom 的 dependencyManagement 部分中的依赖关系。为了集中大型多模块项目的依赖关系</p>
-</li>
-</ol>
-</li>
-</ul>
-<h4 id="3-多模块构建"><a href="#3-多模块构建" class="headerlink" title="3. 多模块构建"></a>3. 多模块构建</h4><blockquote>
-<p>Maven 支持多模块构建。将一个大型软件产品划分为多个模块来进行开发，从而实现软件项目的 “高内聚、低耦合”</p>
-<p>Maven 的多模块构建是通过一个名称为项目继承（project inheritance）的功能来实现的，它允许将一些需要继承的元素，在父模块的 pom 文件中进行指定</p>
-<p>多模块项目包含一个父模块及多个子模块</p>
-</blockquote>
+<p><img src="https://ceshi-1251459004.cos.ap-guangzhou.myqcloud.com/blog/164caaff402d2617.png" alt="img"></p>
+<p>Redis 的字符串是动态字符串，是可以修改的字符串，内部结构实现类似于 Java 的 ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配，当字符串长度小于 1M 时，扩容都是加倍现有的空间，如果超过 1M，扩容时一次只会多扩容 1M 的空间</p>
+<p>字符串是由多个字节组成，每个字节又是由 8 个 bit 组成</p>
+<p><strong>字符串最大长度为 512M</strong></p>
+<h5 id="键值对"><a href="#键值对" class="headerlink" title="键值对"></a>键值对</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">set</span> name codehole <span class="comment">## 添加</span></span></span><br><span class="line">ok</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> get name <span class="comment">## 获取</span></span></span><br><span class="line">"codehole"</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> exists name <span class="comment">## 判断是否存在</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> del name <span class="comment">## 删除</span></span></span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>批量键值对</strong></p>
+<p>可以批量对多个字符串进行读写，节省网络耗时开销</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mset name1 boy name2 girl name3 unknown <span class="comment">## 批量添加</span></span></span><br><span class="line">ok</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mget name1 name2 name3 <span class="comment">## 批量删除</span></span></span><br><span class="line">1) "boy"</span><br><span class="line">2) "girl"</span><br><span class="line">3) "unknown"</span><br></pre></td></tr></table></figure>
+
+<p><strong>过期时间和 set 命令扩展</strong></p>
+<p>可以对 key 设置过期时间，到点自动删除，这个功能常用来控制缓存的失效时间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> expire name 5 <span class="comment">## 设置 5s 后自动删除</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> setex name 5 codehole <span class="comment">## 添加数据 并设置5s后自动删除，等价于 set+expire</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> setnx name codehole <span class="comment"># 如果 name 不存在就执行 set 创建</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>计数</strong></p>
+<p>如果 value 值是一个整数，还可以对它进行自增操作</p>
+<p>自增范围 signed long 的最大最小值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">set</span> age 30</span></span><br><span class="line">ok</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> incr age <span class="comment">## 自增 1</span></span></span><br><span class="line">(integer) 31</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> incrby age 5 <span class="comment">## 增加 5</span></span></span><br><span class="line">(integer) 36</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> incrby age -5 <span class="comment">## 减少 5</span></span></span><br><span class="line">(integer) 31</span><br></pre></td></tr></table></figure>
+
+<h4 id="List-列表"><a href="#List-列表" class="headerlink" title="List (列表)"></a>List (列表)</h4><hr>
+<p>Redis 的列表相当于 Java 语言里的 LinkedList，它是链表而不是数组。意味着 list 的插入和删除操作非常快，时间复杂度为 O(1)，但索引定位很慢，时间复杂度为 O(n)</p>
+<p>当列表弹出了最后一个元素之后，该数据结构自动被删除，内存被回收</p>
 
       
     </div>
@@ -408,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/19/Oracle-%E8%87%AA%E5%8A%A8%E5%85%A8%E9%87%8F%E5%A4%87%E4%BB%BD/" rel="next" title="Oracle 自动全量备份">
-                <i class="fa fa-chevron-left"></i> Oracle 自动全量备份
+              <a href="/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Gradle/" rel="next" title="项目管理工具-Gradle">
+                <i class="fa fa-chevron-left"></i> 项目管理工具-Gradle
               </a>
             
           </div>
@@ -417,10 +391,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/23/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-Gradle/" rel="prev" title="项目管理工具-Gradle">
-                项目管理工具-Gradle <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,7 +513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Maven-概述"><span class="nav-number">1.</span> <span class="nav-text">1. Maven 概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-依赖管理"><span class="nav-number">2.</span> <span class="nav-text">2. 依赖管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-多模块构建"><span class="nav-number">3.</span> <span class="nav-text">3. 多模块构建</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis基础数据结构"><span class="nav-number">1.</span> <span class="nav-text">Redis基础数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#string-字符串"><span class="nav-number">1.1.</span> <span class="nav-text">string (字符串)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#键值对"><span class="nav-number">1.1.1.</span> <span class="nav-text">键值对</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-列表"><span class="nav-number">1.2.</span> <span class="nav-text">List (列表)</span></a></li></ol></li></ol></div>
             
 
           </div>
